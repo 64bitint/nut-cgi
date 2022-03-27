@@ -8,7 +8,11 @@ RUN apt-get update \
 COPY start.sh /
 RUN chmod +x /start.sh
 
-RUN mv /etc/nut/hosts.conf /etc/nut/hosts.conf.original
+RUN mv /etc/nut/hosts.conf /etc/nut/hosts.conf.original && \
+    mv /etc/nut/upsstats.html /etc/nut/upsstats.html.sample && \
+    mv /etc/nut/upsstats-single.html /etc/nut/upsstats-single.html.sample
+
+COPY templates/* /etc/nut/
 
 RUN rm -f /etc/lighttpd/conf-enabled/*-unconfigured.conf && \
     ln -s /etc/lighttpd/conf-available/*-accesslog.conf /etc/lighttpd/conf-enabled/ && \
