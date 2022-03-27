@@ -39,6 +39,7 @@ jobs:
       - name: build image
         run: |
           docker buildx build --push \
-          --tag 64bitint/nut/nut-cgi:latest
-          --platform linux/amd64,linux/arm/v7,linux/arm64
+          --tag 64bitint/nut/nut-cgi:latest \
+          --platform linux/amd64,linux/arm/v7,linux/arm64 \
+          .
           echo test, and deploy your project.
